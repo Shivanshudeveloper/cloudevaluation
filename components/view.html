@@ -1,0 +1,69 @@
+<div class="container mt-4">
+    <h4 id="project"></h4>
+    <ul class="list-group mt-3">
+        <li id="email" class="list-group-item active"></li>
+    </ul>
+    <ul class="list-group mt-3">
+        <h6 class="mb-2">Names</h6>
+        <li id="student-names" class="list-group-item"></li>
+    </ul>
+</div>
+<div id="marksSection" class="container">
+    <hr />
+    <h4>Marks</h4>
+    <form class="mb-5">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Delivery</label>
+            <input type="number" oninput="calculate();" class="form-control" value=0 id="delivery"
+                placeholder="Out of 10">
+            <small class="form-text text-muted">Out of 10</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Coding Standard</label>
+            <input type="number" oninput="calculate();" class="form-control" value=0 id="standard" placeholder="Out of 30">
+            <small class="form-text text-muted">Out of 30</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Runtime</label>
+            <input type="number" oninput="calculate();" class="form-control" value=0 id="runtime" placeholder="Out of 10">
+            <small class="form-text text-muted">Out of 40</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Efficiency</label>
+            <input type="number" oninput="calculate();" class="form-control" value=0 id="efficiency" placeholder="Out of 10">
+            <small class="form-text text-muted">Out of 10</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">General Knowladge</label>
+            <input type="number" oninput="calculate();" class="form-control" value=0 id="general" placeholder="Out of 10">
+            <small class="form-text text-muted">Out of 10</small>
+        </div>
+        <div class="form-group">
+            <h4 class="mb-2">Total</h4>
+            <input type="text" class="form-control" value=0 id="total" placeholder="Total">
+        </div>
+        <button type="submit" onclick="submitMarks()" class="btn btn-block btn-primary">Submit</button>
+    </form>
+</div>
+
+<script>
+    var pageURL = window.location.href
+    var url = new URL(pageURL)
+    var projectName = url.searchParams.get("projectName")
+    var email = url.searchParams.get("email")
+    var studentsName = url.searchParams.get("names")
+    $("#project").html(projectName)
+    $("#email").html(email)
+    $("#student-names").html(studentsName)
+
+
+    const calculate = () => {
+        var delivery = parseInt($("#delivery").val())
+        var standard = parseInt($("#standard").val())
+        var general = parseInt($("#general").val())
+        var runtime = parseInt($("#runtime").val())
+        var efficiency = parseInt($("#efficiency").val())
+        var total = delivery + standard + general + efficiency + runtime
+        $("#total").val(total)
+    }
+</script>
